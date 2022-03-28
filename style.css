@@ -1,46 +1,73 @@
-body {
-  font-family: "poppins";
-  font-size: 24px;
+/* CSS RESET */
+
+* {
   margin: 0;
   padding: 0;
-  height: 100vh;
-  background-color: #fff;
-  color: #191919;
-  display: flex;
-  flex-direction: column;
 }
+
+html {
+  position: relative;
+}
+
+body {
+  font-family: "poppins";
+  font-size: 18px;
+  height: 100vh;
+  background-color: beige;
+  color: #191919;
+}
+
+/* HEADER STYLE */
 
 .header {
-  padding: 5px;
-  font-size: 18px;
+  padding: 20px;
+  font-size: 24px;
   text-align: center;
+  background-color: #fff;
 }
 
-.main-content {
-  flex: 1;
-  background-color: beige;
+/* MAIN SECTION STYLE  */
+
+.main {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* resize icon size */
+img {
+  width: 14px;
+  height: 14px;
+}
+
+/* styling button with icon */
+.add-book {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+/* style button */
 button.add-book {
   padding: 10px 20px;
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 700;
   border: none;
   background-color: #fff;
   color: #191919;
   margin: 20px;
 }
 
-.footer {
-  background-color: #fff;
-  padding: 5px;
-  font-weight: 500;
-  text-align: center;
+.books-grid-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
 }
 
+/* MISCELLANEOUS */
+
+/* style form */
 form {
   width: 250px;
   height: auto;
@@ -50,25 +77,50 @@ form {
   text-transform: capitalize;
 }
 
+/* close button styling */
+.close {
+  color: #191919;
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.form-title {
+  text-align: center;
+  font-weight: 600;
+}
+
+/* flex form div to make label stay on top of input */
 form div {
   display: flex;
   flex-direction: column;
   padding: 10px;
 }
 
+/* flex row checkbox and label to stay side by side */
 div #read-status {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
+/* resize checkbox */
+.check-box {
+  height: 25px;
+  width: 25px;
+  background-color: #191919;
+}
+
+/* change default form input style */
 .form-row input[type="text"],
 .form-row input[type="number"] {
   padding: 7px;
   border: 1px solid #c4c4c4;
 }
 
-button.submit{
+/* style form button */
+button.submit {
   padding: 10px 20px;
   font-size: 20px;
   font-weight: 500;
@@ -78,10 +130,17 @@ button.submit{
   margin: 20px;
 }
 
-div.library-content{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin: 15px;
-}
+/* #form {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+} */
+
+/* .modal{
+  position: fixed;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+} */
