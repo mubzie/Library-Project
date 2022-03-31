@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="style.css" />
-    <!-- <script src="script.js" defer></script> -->
+    <script src="script.js" defer></script>
     <title>Document</title>
   </head>
   <body>
@@ -11,41 +11,61 @@
 
     <main class="main">
       <div class="add-book-btn">
-        <button class="add-book">
-          <img src="icon/plus icon.svg" alt="add icon" />Add Book
-        </button>
+        <button class="add-book" id="button">+ Add Book</button>
       </div>
-      <div class="books-grid-display"></div>
+      <div class="books-display">
+        <!-- <table>
+          <tr>
+            <td>Author</td>
+            <td>Title</td>
+            <td>Page</td>
+            <td>Read Status</td>
+          </tr>
+
+          <tr>
+            <td>Author</td>
+            <td>Title</td>
+            <td>Page</td>
+            <td>Read Status</td>
+            <td><span></span></td>
+          </tr>
+        </table> -->
+      </div>
     </main>
 
-    <!-- <div class="modal">
-        <form action="" id="form">
-            <span class="close">&times;</span>
-            <div class="form-title">add new book</div>
-            <div id="title" class="form-row">
-                <label for="title">title</label>
-                <input type="text" name="" id="title">
-            </div>
+    <div class="modal">
+      <form id="form">
+        <span class="close">&times;</span>
+        <div class="form-title">add new book</div>
+        <div id="title" class="form-row">
+          <label for="title">title</label>
+          <input type="text" name="" id="title" />
+        </div>
 
-            <div id="author" class="form-row">
-                <label for="title">author</label>
-                <input type="text" name="" id="author">
-            </div>
+        <div id="author" class="form-row">
+          <label for="title">author</label>
+          <input type="text" name="" id="author" />
+        </div>
 
-            <div id="page" class="form-row">
-                <label for="title">pages</label>
-                <input type="number" name="" id="title">
-            </div>
-            
-            <div id="read-status">
-                <label for="checkbox"> have you read this book?</label>
-                <input type="checkbox" name="read-status" id="read-status" class="check-box">
-            </div>
+        <div id="page" class="form-row">
+          <label for="title">pages</label>
+          <input type="number" name="" id="pages" />
+        </div>
 
-            <div class="form-button">
-                <button type="submit" class="submit">submit</button>
-            </div>
-        </form>
-    </div> -->
+        <div id="read-status">
+          <label for="checkbox"> have you read this book?</label>
+          <input
+            type="checkbox"
+            name="read-status"
+            id="read-status"
+            class="check-box"
+          />
+        </div>
+
+        <div class="form-button">
+          <button type="submit" class="submit">submit</button>
+        </div>
+      </form>
+    </div>
   </body>
 </html>

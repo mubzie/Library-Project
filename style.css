@@ -13,7 +13,7 @@ body {
   font-family: "poppins";
   font-size: 18px;
   height: 100vh;
-  background-color: beige;
+  background-color: #e7e7e7;
   color: #191919;
 }
 
@@ -34,21 +34,7 @@ body {
   align-items: center;
 }
 
-/* resize icon size */
-img {
-  width: 14px;
-  height: 14px;
-}
-
-/* styling button with icon */
-.add-book {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-/* style button */
+/* style add book button */
 button.add-book {
   padding: 10px 20px;
   font-size: 20px;
@@ -57,12 +43,7 @@ button.add-book {
   background-color: #fff;
   color: #191919;
   margin: 20px;
-}
-
-.books-grid-display {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
+  cursor: pointer;
 }
 
 /* MISCELLANEOUS */
@@ -130,17 +111,41 @@ button.submit {
   margin: 20px;
 }
 
-/* #form {
+#form {
   display: none;
-  position: fixed;
+  /* position: fixed; */
   top: 50%;
   left: 50%;
   z-index: 1;
-} */
+}
 
-/* .modal{
-  position: fixed;
+.modal {
+  /* position: fixed; */
   z-index: 1;
   top: 50%;
   left: 50%;
-} */
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table,
+td {
+  border: 1px solid black;
+  padding: 10px 50px;
+}
+
+th {
+  background-color: #191919;
+  color: #fff;
+}
+
+tr:nth-child(odd) {
+  background-color: #191919;
+  color: #fff;
+}
+
+.books-display {
+  margin-top: 20px;
+}
