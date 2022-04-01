@@ -80,7 +80,7 @@ form div {
 }
 
 /* flex row checkbox and label to stay side by side */
-div #read-status {
+div .read-status {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -137,8 +137,13 @@ td {
 }
 
 th {
+  text-transform: capitalize;
   background-color: #191919;
   color: #fff;
+}
+
+tr{
+text-transform: capitalize;
 }
 
 tr:nth-child(odd) {
@@ -148,4 +153,12 @@ tr:nth-child(odd) {
 
 .books-display {
   margin-top: 20px;
+}
+
+button.icon-btn{
+  height: 24px;
+  width: 24px;
+  border: 0px transparent;
+  background-color: #f6c5c5;
+  outline: none;
 }
