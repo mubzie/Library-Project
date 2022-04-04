@@ -1,6 +1,6 @@
 //this code get the DOM element needed to bring up the form to add new book and to also close the form
-let addBookBtn = document.getElementById('button');
-let closeFormBtn = document.getElementsByClassName('close')[0];
+let addBookBtn = document.getElementById('add-book-btn');
+let closeFormBtn = document.getElementsByClassName('close-form-btn')[0];
 let form = document.getElementById('form');
 
 //this code get the form open
@@ -30,9 +30,9 @@ function Book(title, author, pages, read) {
 //     return `${this.title} ${this.author} ${this.pages} ${this.read}`
 // }
 
-Book.prototype.removeRow = function () {
+// Book.prototype.removeRow = function () {
     
-}
+// }
 
 const addBookToLibrary = (e) => {
 e.preventDefault();
@@ -56,7 +56,7 @@ form.addEventListener('submit', addBookToLibrary)
 function displayBook(myLibrary) {
     let table = '<table border="1">';
     table += `<tr><th>Author</th><th>Title</th><th>Pages</th><th>Read Status</th><th>remove book</th></tr>`;
-    myLibrary.forEach((library) => {
+    myLibrary.forEach((library, i) => {
         table += `<tr>`;
            table += `<td>${library.author}</td>`;
            table += `<td>${library.title}</td>`;
@@ -66,7 +66,7 @@ function displayBook(myLibrary) {
         //    <button style="height: 24px: width 24px: border: 0px transparent;"><img src="/delete-btn.svg" alt="delete btn"></button>
         //             </td>`;
         table += `<td style="background-color: #f6c5c5">
-        <button class="icon-btn"><img src="/delete-btn.svg" alt="delete btn"></button>
+        <button class="icon-btn delBtn" data-index=${i}><img src="/delete-btn.svg" alt="delete btn"></button>
                     </td>`;
         table += `</tr>` 
     });
@@ -75,6 +75,21 @@ function displayBook(myLibrary) {
     document.querySelector('.books-display').innerHTML = table;
     closeForm();
     
+    let delBtns = document.querySelectorAll('.delBtn');
+
+    delBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const i = btn.dataset.index;
+            console.log('book index', i)
+            myLibrary.splice(i, 1);
+            console.log(myLibrary)
+            btn.closest('tr').remove();
+
+            if(i < 0) {
+                console.log('library is empty')
+            }
+        })
+    });
     }
 
 

@@ -59,7 +59,7 @@ form {
 }
 
 /* close button styling */
-.close {
+.close-form-btn {
   color: #191919;
   float: right;
   font-size: 24px;
