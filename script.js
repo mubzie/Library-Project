@@ -1,16 +1,19 @@
-//this code get the DOM element needed to bring up the form to add new book and to also close the form
+//DOM element selector
 let addBookBtn = document.getElementById('add-book-btn');
 let closeFormBtn = document.getElementsByClassName('close-form-btn')[0];
-let form = document.getElementById('form');
+let addBookForm = document.getElementById('addBookForm');
+let formModal = document.querySelector('.big-modal');
 
 //this code get the form open
-addBookBtn.addEventListener('click', () => form.style.display = 'block');
+addBookBtn.addEventListener('click', () => {
+    formModal.classList.toggle('active')
+});
 
 //closeform function that closes the form
 closeFormBtn.addEventListener('click', closeForm);
 
 function closeForm() {
-    form.style.display = 'none';
+    formModal.classList.remove("active")
 }
 
 // All of your book objects are going to be stored in a simple array, 
@@ -26,13 +29,19 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
-// Book.prototype.info = function () {
-//     return `${this.title} ${this.author} ${this.pages} ${this.read}`
+// Book.prototype.changeStatus = function (e) {
+//     if(e.ClassList.contains('readBtn')) {
+//         if(e.innerHTML == 'true') {
+//             e.innerHTML = 'false'
+//             console.log('havent read')
+//         } else if(e.innerHTML == 'false'){
+//             e.innerHTML = 'true'
+//             console.log('have read')
+//         }
+//     }
 // }
 
-// Book.prototype.removeRow = function () {
-    
-// }
+// changeStatus();
 
 const addBookToLibrary = (e) => {
 e.preventDefault();
@@ -42,35 +51,44 @@ const authorInput = document.getElementById('author').value;
 const pagesInput = document.getElementById('pages').value;
 const readStatusInput = document.getElementById('read-status').checked;
 
+// if(readStatusInput === false) {
+//     readStatusInput.value = 'not read'
+//     console.log('true')
+// } else {
+//     readStatusInput.checked = 'read'
+//     console.log('false')
+// }
+
 book = new Book(titleInput, authorInput, pagesInput, readStatusInput);
 myLibrary.push(book);
 
     console.log(myLibrary);
     displayBook(myLibrary);
+    // form.reset();
     
 }
 
-form.addEventListener('submit', addBookToLibrary)
+addBookForm.addEventListener('submit', addBookToLibrary)
 
 //A function that loops through the array and displays each book on the page
 function displayBook(myLibrary) {
     let table = '<table border="1">';
     table += `<tr><th>Author</th><th>Title</th><th>Pages</th><th>Read Status</th><th>remove book</th></tr>`;
+    
     myLibrary.forEach((library, i) => {
         table += `<tr>`;
            table += `<td>${library.author}</td>`;
            table += `<td>${library.title}</td>`;
            table += `<td>${library.pages}</td>`;
            table += `<td>${library.read}</td>`;
-        //    table += `<td style="background-color: #f6c5c5">
-        //    <button style="height: 24px: width 24px: border: 0px transparent;"><img src="/delete-btn.svg" alt="delete btn"></button>
-        //             </td>`;
-        table += `<td style="background-color: #f6c5c5">
-        <button class="icon-btn delBtn" data-index=${i}><img src="/delete-btn.svg" alt="delete btn"></button>
+
+           table += `<td style="background-color: #f6c5c5">
+           <button class="icon-btn delBtn" data-index=${i}><img src="/delete-btn.svg" alt="delete btn"></button>
                     </td>`;
         table += `</tr>` 
     });
     table += '</table>';
+
 
     document.querySelector('.books-display').innerHTML = table;
     closeForm();
@@ -80,14 +98,9 @@ function displayBook(myLibrary) {
     delBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const i = btn.dataset.index;
-            console.log('book index', i)
             myLibrary.splice(i, 1);
             console.log(myLibrary)
             btn.closest('tr').remove();
-
-            if(i < 0) {
-                console.log('library is empty')
-            }
         })
     });
     }

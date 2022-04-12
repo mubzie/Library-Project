@@ -111,20 +111,34 @@ button.submit {
   margin: 20px;
 }
 
-#form {
-  display: none;
-  /* position: fixed; */
-  top: 50%;
-  left: 50%;
+.big-modal .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: 1;
+  display: none;
 }
 
-.modal {
-  /* position: fixed; */
-  z-index: 1;
-  top: 50%;
+.big-modal .modal-content {
+  position: absolute;
   left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  z-index: 2;
 }
+
+.big-modal.active .overlay{
+  display: block;
+}
+
+.big-modal.active .modal-content {
+  transition: all 300ms ease-in-out;
+  transform: translate(-50%, -50%) scale(1);
+}
+
 
 table {
   border-collapse: collapse;
@@ -137,6 +151,9 @@ td {
 }
 
 th {
+  width: 140px;
+  height: 40px;
+  border: 1px solid #191919;
   text-transform: capitalize;
   background-color: #191919;
   color: #fff;
@@ -161,4 +178,5 @@ button.icon-btn{
   border: 0px transparent;
   background-color: #f6c5c5;
   outline: none;
+  cursor: pointer;
 }
