@@ -151,7 +151,7 @@ td {
 }
 
 th {
-  width: 140px;
+  /* width: 140px; */
   height: 40px;
   border: 1px solid #191919;
   text-transform: capitalize;
@@ -170,6 +170,7 @@ tr:nth-child(odd) {
 
 .books-display {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 button.icon-btn{

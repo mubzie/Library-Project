@@ -6,7 +6,7 @@ let formModal = document.querySelector('.big-modal');
 
 //this code get the form open
 addBookBtn.addEventListener('click', () => {
-    formModal.classList.toggle('active')
+    formModal.classList.add('active')
 });
 
 //closeform function that closes the form
@@ -51,20 +51,20 @@ const authorInput = document.getElementById('author').value;
 const pagesInput = document.getElementById('pages').value;
 const readStatusInput = document.getElementById('read-status').checked;
 
-// if(readStatusInput === false) {
-//     readStatusInput.value = 'not read'
-//     console.log('true')
-// } else {
-//     readStatusInput.checked = 'read'
-//     console.log('false')
-// }
+if(readStatusInput === false) {
+    readStatusInput.checked = 'not read'
+    console.log('truthy')
+} else {
+    readStatusInput.checked = 'read'
+    console.log('falsey')
+}
 
 book = new Book(titleInput, authorInput, pagesInput, readStatusInput);
 myLibrary.push(book);
 
     console.log(myLibrary);
     displayBook(myLibrary);
-    // form.reset();
+    addBookForm.reset();
     
 }
 
