@@ -64,7 +64,7 @@ myLibrary.push(book);
 
     console.log(myLibrary);
     displayBook(myLibrary);
-    addBookForm.reset();
+    // addBookForm.reset();
     
 }
 
@@ -83,7 +83,7 @@ function displayBook(myLibrary) {
            table += `<td>${library.read}</td>`;
 
            table += `<td style="background-color: #f6c5c5">
-           <button class="icon-btn delBtn" data-index=${i}><img src="/delete-btn.svg" alt="delete btn"></button>
+           <button class="icon-btn delBtn" data-index=${i}><img src="svg/delete-btn.svg" alt="delete btn"></button>
                     </td>`;
         table += `</tr>` 
     });
