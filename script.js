@@ -22,26 +22,14 @@ closeFormBtn.addEventListener('click', closeForm);
 
 let myLibrary = [];
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
 }
-
-// Book.prototype.changeStatus = function (e) {
-//     if(e.ClassList.contains('readBtn')) {
-//         if(e.innerHTML == 'true') {
-//             e.innerHTML = 'false'
-//             console.log('havent read')
-//         } else if(e.innerHTML == 'false'){
-//             e.innerHTML = 'true'
-//             console.log('have read')
-//         }
-//     }
-// }
-
-// changeStatus();
 
 const addBookToLibrary = (e) => {
 e.preventDefault();
@@ -51,10 +39,10 @@ const authorInput = document.getElementById('author').value;
 const pagesInput = document.getElementById('pages').value;
 const readStatusInput = document.getElementById('read-status').checked;
 
-book = new Book(titleInput, authorInput, pagesInput, readStatusInput);
+const book = new Book(titleInput, authorInput, pagesInput, readStatusInput);
 myLibrary.push(book);
 
-    console.log(myLibrary);
+
     displayBook(myLibrary);
     addBookForm.reset();
     
@@ -91,7 +79,6 @@ function displayBook(myLibrary) {
         btn.addEventListener('click', () => {
             const i = btn.dataset.index;
             myLibrary.splice(i, 1);
-            console.log(myLibrary)
             btn.closest('tr').remove();
         })
     });
