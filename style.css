@@ -91,6 +91,7 @@ div .read-status {
   height: 25px;
   width: 25px;
   background-color: #191919;
+  cursor: pointer;
 }
 
 /* change default form input style */
@@ -109,6 +110,7 @@ button.submit {
   background-color: #191919;
   color: #fff;
   margin: 20px;
+  cursor: pointer;
 }
 
 .big-modal .overlay {

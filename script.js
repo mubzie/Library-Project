@@ -10,11 +10,11 @@ addBookBtn.addEventListener('click', () => {
 });
 
 //closeform function that closes the form
-closeFormBtn.addEventListener('click', closeForm);
-
 function closeForm() {
     formModal.classList.remove("active")
 }
+
+closeFormBtn.addEventListener('click', closeForm);
 
 // All of your book objects are going to be stored in a simple array, 
 //so add a function to the script (not the constructor) that can take user’s input 
@@ -51,20 +51,12 @@ const authorInput = document.getElementById('author').value;
 const pagesInput = document.getElementById('pages').value;
 const readStatusInput = document.getElementById('read-status').checked;
 
-if(readStatusInput === false) {
-    readStatusInput.checked = 'not read'
-    console.log('truthy')
-} else {
-    readStatusInput.checked = 'read'
-    console.log('falsey')
-}
-
 book = new Book(titleInput, authorInput, pagesInput, readStatusInput);
 myLibrary.push(book);
 
     console.log(myLibrary);
     displayBook(myLibrary);
-    // addBookForm.reset();
+    addBookForm.reset();
     
 }
 
@@ -95,7 +87,7 @@ function displayBook(myLibrary) {
     
     let delBtns = document.querySelectorAll('.delBtn');
 
-    delBtns.forEach(btn => {
+    delBtns.forEach( btn => {
         btn.addEventListener('click', () => {
             const i = btn.dataset.index;
             myLibrary.splice(i, 1);
