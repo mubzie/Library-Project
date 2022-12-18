@@ -1,4 +1,12 @@
 {
   "cSpell.words": ["Btns", "closeform"],
-  "liveServer.settings.port": 5501
+  "liveServer.settings.port": 5501,
+  "json.schemas": [
+  
+  ],
+
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "eslint.validate": ["javascript"]
 }
