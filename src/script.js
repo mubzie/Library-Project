@@ -1,15 +1,15 @@
-//DOM element selector
-let addBookBtn = document.getElementById('add-book-btn');
-let closeFormBtn = document.getElementsByClassName('close-form-btn')[0];
-let addBookForm = document.getElementById('addBookForm');
-let formModal = document.querySelector('.big-modal');
+// DOM element selector
+const addBookBtn = document.getElementById('add-book-btn');
+const closeFormBtn = document.getElementsByClassName('close-form-btn')[0];
+const addBookForm = document.getElementById('addBookForm');
+const formModal = document.querySelector('.big-modal');
 
-//this code get the form open
+// this code get the form open
 addBookBtn.addEventListener('click', () => {
     formModal.classList.add('active')
 });
 
-//closeform function that closes the form
+// closeform function that closes the form
 function closeForm() {
     formModal.classList.remove("active")
 }
@@ -17,18 +17,15 @@ function closeForm() {
 closeFormBtn.addEventListener('click', closeForm);
 
 // All of your book objects are going to be stored in a simple array, 
-//so add a function to the script (not the constructor) that can take user’s input 
-//and store the new book objects into an array.
+// so add a function to the script (not the constructor) that can take user’s input 
+// and store the new book objects into an array.
 
-let myLibrary = [];
+const myLibrary = [];
 
-class Book {
-    constructor(title, author, pages, read) {
-        this.title = title;
-        this.author = author;
-        this.pages = pages;
-        this.read = read;
-    }
+function Book(title, author, pages) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
 }
 
 const addBookToLibrary = (e) => {
@@ -50,7 +47,7 @@ myLibrary.push(book);
 
 addBookForm.addEventListener('submit', addBookToLibrary)
 
-//A function that loops through the array and displays each book on the page
+// A function that loops through the array and displays each book on the page
 function displayBook(myLibrary) {
     let table = '<table border="1">';
     table += `<tr><th>Author</th><th>Title</th><th>Pages</th><th>Read Status</th><th>remove book</th></tr>`;
@@ -73,7 +70,7 @@ function displayBook(myLibrary) {
     document.querySelector('.books-display').innerHTML = table;
     closeForm();
     
-    let delBtns = document.querySelectorAll('.delBtn');
+    const delBtns = document.querySelectorAll('.delBtn');
 
     delBtns.forEach( btn => {
         btn.addEventListener('click', () => {
