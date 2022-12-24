@@ -22,15 +22,9 @@ Book.prototype.readStatus = function() {
     
 }
 
-const book2 = new Book('bro', 'sis', '33', true);
-console.log(book2)
-console.log(book2.readStatus())
-
-const book3 = new Book('sis', 'damn', '23', false)
-console.log(book3)
-console.log(book3.readStatus()) 
-
-
+// const book2 = new Book('bro', 'sis', '33', true);
+// console.log(book2)
+// console.log(book2.readStatus())
 
 function addBookToLibrary(e) {
     e.preventDefault();
@@ -44,15 +38,31 @@ function addBookToLibrary(e) {
 
     myLibrary.push(book2);
 
-    myLibrary.forEach( library => {
-        display.textContent = `${library.title} ${library.author} ${library.pages} ${book2.readStatus()}`
-    })
+   displayBook(myLibrary)
 
-    console.log(myLibrary)
+
+    // console.log(myLibrary)
 }
 
 addBookBtn.addEventListener('submit', addBookToLibrary);
 
-function displayBook() {
+function displayBook(bookArray) {
+
+    bookArray.forEach( library => {
+
+        const cardContainer = document.createElement('div');
+        cardContainer.classList.add('card-container');
+    
+        const paraTitle = document.createElement('div');
+        paraTitle.textContent = `${library.title}`
+        const paraAuthor = document.createElement('div');
+        const paraPages = document.createElement('div');
+        
+        cardContainer.append(paraTitle, paraAuthor, paraPages);
+    
+    
+        display.appendChild(cardContainer);
+
+    })
     
 }
