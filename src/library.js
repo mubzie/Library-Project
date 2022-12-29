@@ -79,8 +79,10 @@ function displayBook(book, i) {
         const deleteBtns = document.querySelectorAll('.del-btn');
 
         deleteBtns.forEach( btn => {
-            btn.addEventListener('click', () => {
-                console.log(btn.dataset.id)
+            btn.addEventListener('click', (e) => {
+                e.stopImmediatePropagation()
+                const i = btn.dataset.id
+                myLibrary.splice(i, 1);
             })
         })
 
