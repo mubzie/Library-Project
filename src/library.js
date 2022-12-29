@@ -34,35 +34,54 @@ function addBookToLibrary(e) {
     const pages = document.getElementById('pages').value;
     const readStatus = document.getElementById('read-status').checked;
 
-    const book2 = new Book(title, author, pages, readStatus);
+    const book = new Book(title, author, pages, readStatus);
 
-    myLibrary.push(book2);
+    myLibrary.push(book);
 
-   displayBook(myLibrary)
+    myLibrary.forEach((item, i) => {
+        item.id = i + 1;
+    });
 
+    console.log(myLibrary)
+    console.log(book.id)
 
-    // console.log(myLibrary)
+   displayBook(book, book.id)
+
 }
 
 addBookBtn.addEventListener('submit', addBookToLibrary);
 
-function displayBook(bookArray) {
-
-    bookArray.forEach( library => {
+function displayBook(book, i) {
 
         const cardContainer = document.createElement('div');
         cardContainer.classList.add('card-container');
     
         const paraTitle = document.createElement('div');
-        paraTitle.textContent = `${library.title}`
+        paraTitle.textContent = `${book.title}`
+
         const paraAuthor = document.createElement('div');
+        paraAuthor.textContent = `${book.author}`
+
         const paraPages = document.createElement('div');
-        
-        cardContainer.append(paraTitle, paraAuthor, paraPages);
-    
-    
+        paraPages.textContent = `${book.pages}`
+
+        const readState = document.createElement('div');
+        readState.textContent = `${book.readStatus()}`
+
+        const deleteBookBtn = document.createElement('button');
+        deleteBookBtn.classList.add('del-btn');
+        deleteBookBtn.setAttribute('data-id', `${i}`)
+
+        cardContainer.append(paraTitle, paraAuthor, paraPages, readState, deleteBookBtn);
+
         display.appendChild(cardContainer);
 
-    })
-    
+        const deleteBtns = document.querySelectorAll('.del-btn');
+
+        deleteBtns.forEach( btn => {
+            btn.addEventListener('click', () => {
+                console.log(btn.dataset.id)
+            })
+        })
+
 }
