@@ -18,7 +18,7 @@ Book.prototype.readStatus = function() {
     if(this.isRead === true) {
         return 'read';
     } 
-        return 'not yet';
+        return 'not read';
     
 }
 
@@ -67,6 +67,7 @@ function displayBook(book, i) {
         paraPages.textContent = `${book.pages}`
 
         const readState = document.createElement('button');
+        readState.classList.add('change-status');
         readState.textContent = `${book.readStatus()}`
 
         const deleteBookBtn = document.createElement('button');
@@ -76,6 +77,21 @@ function displayBook(book, i) {
         cardContainer.append(paraTitle, paraAuthor, paraPages, readState, deleteBookBtn);
 
         display.appendChild(cardContainer);
+
+        const changeStatus = document.querySelectorAll('.change-status');
+
+        changeStatus.forEach( btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopImmediatePropagation()
+                    console.log(e.target)
+                    if(readState.textContent === 'read') {
+                        readState.textContent = 'not read'
+                    } else if(readState.textContent === 'not read') { 
+                        readState.textContent = 'read';
+                    }
+                })
+            
+        })
 
         const deleteBtns = document.querySelectorAll('.del-btn');
 
