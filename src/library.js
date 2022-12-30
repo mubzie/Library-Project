@@ -39,12 +39,13 @@ function addBookToLibrary(e) {
     myLibrary.push(book);
 
     myLibrary.forEach((item, i) => {
-        item.id = i + 1;
+        // eslint-disable-next-line no-param-reassign
+        item.id = i + 0;
     });
 
     console.log(myLibrary)
-    console.log(book.id)
 
+   // eslint-disable-next-line no-use-before-define
    displayBook(book, book.id)
 
 }
@@ -65,7 +66,7 @@ function displayBook(book, i) {
         const paraPages = document.createElement('div');
         paraPages.textContent = `${book.pages}`
 
-        const readState = document.createElement('div');
+        const readState = document.createElement('button');
         readState.textContent = `${book.readStatus()}`
 
         const deleteBookBtn = document.createElement('button');
@@ -80,9 +81,14 @@ function displayBook(book, i) {
 
         deleteBtns.forEach( btn => {
             btn.addEventListener('click', (e) => {
-                e.stopImmediatePropagation()
-                const i = btn.dataset.id
-                myLibrary.splice(i, 1);
+                e.stopImmediatePropagation();
+                const index = btn.dataset.id;
+                console.log(index);
+
+                myLibrary.splice(index, 1);
+                
+                btn.closest('div').remove();
+
             })
         })
 
