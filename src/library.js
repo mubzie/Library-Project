@@ -72,6 +72,7 @@ function displayBook(book, i) {
 
         const deleteBookBtn = document.createElement('button');
         deleteBookBtn.classList.add('del-btn');
+        deleteBookBtn.textContent = 'delete book'
         deleteBookBtn.setAttribute('data-id', `${i}`)
 
         cardContainer.append(paraTitle, paraAuthor, paraPages, readState, deleteBookBtn);
@@ -81,16 +82,14 @@ function displayBook(book, i) {
         const changeStatus = document.querySelectorAll('.change-status');
 
         changeStatus.forEach( btn => {
-                btn.addEventListener('click', (e) => {
-                    e.stopImmediatePropagation()
-                    console.log(e.target)
-                    if(readState.textContent === 'read') {
-                        readState.textContent = 'not read'
-                    } else if(readState.textContent === 'not read') { 
-                        readState.textContent = 'read';
-                    }
-                })
-            
+            btn.addEventListener('click', (e) => {
+                 e.stopImmediatePropagation()
+                 if(readState.textContent === 'read') {
+                     readState.textContent = 'not read'
+                 } else if(readState.textContent === 'not read') { 
+                      readState.textContent = 'read';
+                 }
+             })
         })
 
         const deleteBtns = document.querySelectorAll('.del-btn');

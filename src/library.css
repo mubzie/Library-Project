@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: #191919;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 40px;
+    background-color: #191919;
+    color: #fff;
+}
+
+button.add-book {
+    padding: 8px;
+    font-size: 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
