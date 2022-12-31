@@ -40,6 +40,7 @@ const book = new Book(titleInput, authorInput, pagesInput, readStatusInput);
 myLibrary.push(book);
 
 
+    // eslint-disable-next-line no-use-before-define
     displayBook(myLibrary);
     addBookForm.reset();
     

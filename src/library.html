@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+ <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="library.css">
     <script src="library.js" defer></script>
-    <title>Document</title>
-</head>
+    <title>my library app</title>
+ </head>
 
-<body>
+ <body>
 
   <header class="header">
     <h1>My Library</h1>
@@ -23,38 +23,44 @@
     </div>
   </main>
 
-
-  <form id="addBookForm">
-        <span class="close-form-btn">&times;</span>
-    
-        <div class="form-row">
-          <label for="title">title</label>
-          <input type="text" name="" id="title" required />
-        </div>
-    
-        <div class="form-row">
-          <label for="author">author</label>
-          <input type="text" name="" id="author" required />
-        </div>
-    
-        <div class="form-row">
-          <label for="pages">pages</label>
-          <input type="number" name="" id="pages" required />
-        </div>
-    
-        <div class="read-status">
-          <label for="checkbox"> have you read this book?</label>
-          <input
-            type="checkbox"
-            name="read-status"
-            id="read-status"
-            class="check-box"
-          />
-        </div>
-    
-        <div class="form-button">
-          <button type="submit" class="submit">submit</button>
-        </div>
-      </form>    
-</body>
+ <div class="big-modal">
+  <div class="overlay"></div>
+  <div class="modal-content">
+    <form id="addBookForm">
+      <div class="form-title">input book details
+      <span class="close-form-btn">&times;</span>
+      </div>
+  
+      <div class="form-row">
+        <label for="title">title</label>
+        <input type="text" name="" id="title" required />
+      </div>
+  
+      <div class="form-row">
+        <label for="author">author</label>
+        <input type="text" name="" id="author" required />
+      </div>
+  
+      <div class="form-row">
+        <label for="pages">pages</label>
+        <input type="number" name="" id="pages" required />
+      </div>
+  
+      <div class="read-status">
+        <label for="checkbox"> have you read this book?</label>
+        <input
+          type="checkbox"
+          name="read-status"
+          id="read-status"
+          class="check-box"
+        />
+      </div>
+  
+      <div class="form-button">
+        <button type="submit" class="submit">submit</button>
+      </div>
+    </form>    
+  </div>
+ </div>  
+ </body>
 </html>

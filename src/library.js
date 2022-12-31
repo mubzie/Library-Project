@@ -1,5 +1,20 @@
-const addBookBtn = document.getElementById('addBookForm');
+const addBookBtn = document.getElementById('add-book-btn');
+const closeFormBtn = document.querySelector('.close-form-btn');
+const addBookForm = document.getElementById('addBookForm');
+const formModal = document.querySelector('.big-modal');
 const display = document.querySelector('.display');
+
+// this code get the form open
+addBookBtn.addEventListener('click', () => {
+    formModal.classList.add('active')
+});
+
+// closeform function that closes the form
+function closeForm() {
+    formModal.classList.remove("active")
+}
+
+closeFormBtn.addEventListener('click', closeForm);
 
 // this is the book array that store all book user added through the constructor function
 const myLibrary = [];
@@ -45,12 +60,14 @@ function addBookToLibrary(e) {
 
     console.log(myLibrary)
 
-   // eslint-disable-next-line no-use-before-define
-   displayBook(book, book.id)
+    // eslint-disable-next-line no-use-before-define
+    displayBook(book, book.id)
+
+    addBookForm.reset()
 
 }
 
-addBookBtn.addEventListener('submit', addBookToLibrary);
+addBookForm.addEventListener('submit', addBookToLibrary);
 
 function displayBook(book, i) {
 
@@ -58,20 +75,23 @@ function displayBook(book, i) {
         cardContainer.classList.add('card-container');
     
         const paraTitle = document.createElement('div');
-        paraTitle.textContent = `${book.title}`
+        paraTitle.classList.add('title');
+        paraTitle.textContent = `Title: ${book.title}`
 
         const paraAuthor = document.createElement('div');
-        paraAuthor.textContent = `${book.author}`
+        paraAuthor.classList.add('author');
+        paraAuthor.textContent = `Author: ${book.author}`
 
         const paraPages = document.createElement('div');
-        paraPages.textContent = `${book.pages}`
+        paraPages.classList.add('pages')
+        paraPages.textContent = `page: ${book.pages}`
 
         const readState = document.createElement('button');
-        readState.classList.add('change-status');
+        readState.classList.add('change-status', 'display-btn');
         readState.textContent = `${book.readStatus()}`
-
+        
         const deleteBookBtn = document.createElement('button');
-        deleteBookBtn.classList.add('del-btn');
+        deleteBookBtn.classList.add('del-btn', 'display-btn');
         deleteBookBtn.textContent = 'delete book'
         deleteBookBtn.setAttribute('data-id', `${i}`)
 
@@ -79,16 +99,32 @@ function displayBook(book, i) {
 
         display.appendChild(cardContainer);
 
+        closeForm();
+
+        // eslint-disable-next-line func-names
+        Book.prototype.readStyle = function() {
+            if(this.isRead === true) {
+                readState.classList.add('read')
+            } else if(this.isRead === false) {
+                readState.classList.add('not-read')
+            }
+        }
+        book.readStyle();
+
         const changeStatus = document.querySelectorAll('.change-status');
 
         changeStatus.forEach( btn => {
             btn.addEventListener('click', (e) => {
-                 e.stopImmediatePropagation()
-                 if(readState.textContent === 'read') {
-                     readState.textContent = 'not read'
-                 } else if(readState.textContent === 'not read') { 
-                      readState.textContent = 'read';
-                 }
+                e.stopImmediatePropagation()
+                if(readState.textContent === 'read') {
+                    readState.textContent = 'not read'
+                    readState.classList.add('not-read');
+                    readState.classList.remove('read')
+                } else if(readState.textContent === 'not read') { 
+                    readState.textContent = 'read';
+                    readState.classList.add('read');
+                    readState.classList.remove('not-read')
+                }
              })
         })
 
