@@ -37,10 +37,6 @@ Book.prototype.readStatus = function() {
     
 }
 
-// const book2 = new Book('bro', 'sis', '33', true);
-// console.log(book2)
-// console.log(book2.readStatus())
-
 function addBookToLibrary(e) {
     e.preventDefault();
 
