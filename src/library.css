@@ -151,7 +151,7 @@ button.submit {
 div.display {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 40px;
+    gap: 32px;
     padding: 40px 60px;
     font-size: 1.5rem;
 }
