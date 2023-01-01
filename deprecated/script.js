@@ -49,6 +49,7 @@ myLibrary.push(book);
 addBookForm.addEventListener('submit', addBookToLibrary)
 
 // A function that loops through the array and displays each book on the page
+// eslint-disable-next-line no-shadow
 function displayBook(myLibrary) {
     let table = '<table border="1">';
     table += `<tr><th>Author</th><th>Title</th><th>Pages</th><th>Read Status</th><th>remove book</th></tr>`;
