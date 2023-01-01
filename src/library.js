@@ -86,6 +86,9 @@ function displayBook(book, i) {
         paraPages.classList.add('pages')
         paraPages.textContent = `page: ${book.pages}`
 
+        const btnContainer = document.createElement('div');
+        btnContainer.classList.add('btn-container');
+
         const readState = document.createElement('button');
         readState.classList.add('change-status', 'display-btn');
         readState.textContent = `${book.readStatus()}`
@@ -95,7 +98,9 @@ function displayBook(book, i) {
         deleteBookBtn.textContent = 'delete book'
         deleteBookBtn.setAttribute('data-id', `${i}`)
 
-        cardContainer.append(paraTitle, paraAuthor, paraPages, readState, deleteBookBtn);
+        btnContainer.append(readState, deleteBookBtn);
+
+        cardContainer.append(paraTitle, paraAuthor, paraPages, btnContainer);
 
         display.appendChild(cardContainer);
 
@@ -138,7 +143,7 @@ function displayBook(book, i) {
 
                 myLibrary.splice(index, 1);
                 
-                btn.closest('div').remove();
+                btn.parentElement.parentElement.remove();
 
             })
         })

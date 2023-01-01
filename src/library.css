@@ -6,24 +6,29 @@
 body {
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
+    font-size: 16px;
+    background-color: #E7E7E7;
     color: #191919;
 }
 
 header {
     /* position: fixed; */
+    top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 40px;
+    padding: 28px 60px;
     background-color: #fff;
     color: #191919;
-    border-bottom: 2px solid gray;
+    /* border-bottom: 2px solid #191919; */
+    text-transform: uppercase;
 }
 
 button.add-book {
-    padding: 8px;
-    font-size: 1.5rem;
+    padding: 12px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border: none;
     border-radius: 6px;
     cursor: pointer;
     background-color: #191919;
@@ -37,8 +42,7 @@ div.form-title {
     justify-content: space-around;
     font-weight: 500;
     font-size: 1.2rem;
-  }
-
+}
 
 main {
     height: 100vh;
@@ -140,24 +144,33 @@ div.display {
     display: flex;
     flex-wrap: wrap;
     gap: 24px;
-    padding: 24px 40px;
+    padding: 40px 60px;
     font-size: 1.5rem;
 }
 
 div.card-container {
-    width: 300px;
+    width: 344px;
     height: auto;
-    padding: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    /* border: 2px solid #191919; */
+    border-radius: 8px;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    background-color: #fff;
+}
+
+div.btn-container {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    border: 2px solid #191919;
-    border-radius: 8px;
 }
 
 button.display-btn {
     padding: 8px;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     border-radius: 6px;
     cursor: pointer;
     text-transform: capitalize;
@@ -177,6 +190,24 @@ button.not-read {
 }
 
 button.del-btn {
-    background-color: #ff0000;
+    background-color: #ED0707;
     color: #fff;
+    border: 2px solid #ED0707;
+}
+
+/* Media query */
+
+@media (max-width: 600px) {
+    header {
+        font-size: 0.9rem;
+        padding: 28px 16px;
+    }
+
+    button.add-book {
+        font-size: 1rem;
+    }
+
+    div.display {
+        padding: 40px 16px;
+    }
 }
