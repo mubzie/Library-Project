@@ -20,11 +20,13 @@ closeFormBtn.addEventListener('click', closeForm);
 const myLibrary = [];
 
 // this is the constructor function that get called using the "new" keyword 
-function Book(title, author, pages, isRead) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
+class Book {
+    constructor (title, author, pages, isRead) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.isRead = isRead;
+    }
 }
 
 // book prototype that check if book has been read or not
@@ -54,8 +56,6 @@ function addBookToLibrary(e) {
         item.id = i + 0;
     });
 
-    console.log(myLibrary)
-
     // eslint-disable-next-line no-use-before-define
     displayBook(book, book.id)
 
@@ -67,81 +67,80 @@ addBookForm.addEventListener('submit', addBookToLibrary);
 
 function displayBook(book, i) {
 
-        const cardContainer = document.createElement('div');
-        cardContainer.classList.add('card-container');
-    
-        const paraTitle = document.createElement('div');
-        paraTitle.classList.add('title');
-        paraTitle.textContent = `Title: ${book.title}`
+    const cardContainer = document.createElement('div');
+    cardContainer.classList.add('card-container');
 
-        const paraAuthor = document.createElement('div');
-        paraAuthor.classList.add('author');
-        paraAuthor.textContent = `Author: ${book.author}`
+    const paraTitle = document.createElement('div');
+    paraTitle.classList.add('title');
+    paraTitle.textContent = `Title: ${book.title}`
 
-        const paraPages = document.createElement('div');
-        paraPages.classList.add('pages')
-        paraPages.textContent = `page: ${book.pages}`
+    const paraAuthor = document.createElement('div');
+    paraAuthor.classList.add('author');
+    paraAuthor.textContent = `Author: ${book.author}`
 
-        const btnContainer = document.createElement('div');
-        btnContainer.classList.add('btn-container');
+    const paraPages = document.createElement('div');
+    paraPages.classList.add('pages')
+    paraPages.textContent = `page: ${book.pages}`
 
-        const readState = document.createElement('button');
-        readState.classList.add('change-status', 'display-btn');
-        readState.textContent = `${book.readStatus()}`
+    const btnContainer = document.createElement('div');
+    btnContainer.classList.add('btn-container');
+
+    const readState = document.createElement('button');
+    readState.classList.add('change-status', 'display-btn');
+    readState.textContent = `${book.readStatus()}`
         
-        const deleteBookBtn = document.createElement('button');
-        deleteBookBtn.classList.add('del-btn', 'display-btn');
-        deleteBookBtn.textContent = 'delete book'
-        deleteBookBtn.setAttribute('data-id', `${i}`)
+    const deleteBookBtn = document.createElement('button');
+    deleteBookBtn.classList.add('del-btn', 'display-btn');
+    deleteBookBtn.textContent = 'delete book'
+    deleteBookBtn.setAttribute('data-id', `${i}`)
 
-        btnContainer.append(readState, deleteBookBtn);
+    btnContainer.append(readState, deleteBookBtn);
 
-        cardContainer.append(paraTitle, paraAuthor, paraPages, btnContainer);
+    cardContainer.append(paraTitle, paraAuthor, paraPages, btnContainer);
 
-        display.appendChild(cardContainer);
+    display.appendChild(cardContainer);
 
-        closeForm();
+    closeForm();
 
-        // eslint-disable-next-line func-names
-        Book.prototype.readStyle = function() {
-            if(this.isRead === true) {
-                readState.classList.add('read')
-            } else if(this.isRead === false) {
-                readState.classList.add('not-read')
-            }
+    // eslint-disable-next-line func-names
+    Book.prototype.readStyle = function() {
+        if(this.isRead === true) {
+            readState.classList.add('read')
+        } else if(this.isRead === false) {
+            readState.classList.add('not-read')
         }
-        book.readStyle();
+    }
+    book.readStyle();
 
-        const changeStatus = document.querySelectorAll('.change-status');
+    const changeStatus = document.querySelectorAll('.change-status');
 
-        changeStatus.forEach( btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopImmediatePropagation()
-                if(readState.textContent === 'read') {
-                    readState.textContent = 'not read'
-                    readState.classList.add('not-read');
-                    readState.classList.remove('read')
-                } else if(readState.textContent === 'not read') { 
-                    readState.textContent = 'read';
-                    readState.classList.add('read');
-                    readState.classList.remove('not-read')
-                }
-             })
-        })
-
-        const deleteBtns = document.querySelectorAll('.del-btn');
-
-        deleteBtns.forEach( btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopImmediatePropagation();
-                const index = btn.dataset.id;
-                console.log(index);
-
-                myLibrary.splice(index, 1);
-                
-                btn.parentElement.parentElement.remove();
-
+    changeStatus.forEach( btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopImmediatePropagation()
+            if(readState.textContent === 'read') {
+                readState.textContent = 'not read'
+                readState.classList.add('not-read');
+                readState.classList.remove('read')
+            } else if(readState.textContent === 'not read') { 
+                readState.textContent = 'read';
+                readState.classList.add('read');
+                readState.classList.remove('not-read')
+            }
             })
+    })
+
+    const deleteBtns = document.querySelectorAll('.del-btn');
+
+    deleteBtns.forEach( btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopImmediatePropagation();
+            const index = btn.dataset.id;
+
+            myLibrary.splice(index, 1);
+            
+            btn.parentElement.parentElement.remove();
+
         })
+    })
 
 }
