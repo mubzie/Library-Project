@@ -19,7 +19,7 @@ closeFormBtn.addEventListener('click', closeForm);
 // this is the book array that store all book user added through the constructor function
 const myLibrary = [];
 
-// this is the constructor function that get called using the "new" keyword 
+// this is the class declaration that get called using the "new" keyword 
 class Book {
     constructor (title, author, pages, isRead) {
         this.title = title;
