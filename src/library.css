@@ -202,6 +202,29 @@ button.del-btn {
     border: 2px solid #ED0707;
 }
 
+.form-row input:invalid {
+    background-color: #fdd;
+}
+
+input:focus:invalid {
+    border-color: #900;
+    outline: none;
+}
+
+.error {
+    width: 100%;
+
+    font-size: .9rem;
+    font-weight: 500;
+    color: #900;
+
+    box-sizing: border-box;
+}
+
+.error.active {
+    padding: .3em;
+}
+
 /* Media query */
 
 @media (max-width: 600px) {

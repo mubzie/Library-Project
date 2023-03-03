@@ -4,6 +4,106 @@ const addBookForm = document.getElementById('addBookForm');
 const formModal = document.querySelector('.big-modal');
 const display = document.querySelector('.display');
 
+// form validation
+const titleInput = document.getElementById('title')
+const authorInput = document.getElementById('author')
+const pagesInput = document.getElementById('pages')
+const checkBox = document.getElementById('read-status')
+const titleStatus = document.querySelector('#title + span.error')
+const authorStatus = document.querySelector('#author + span.error')
+const pageStatus = document.querySelector('#pages + span.error')
+// const checkStatus = document.querySelector('#read-status + span.error')
+
+
+
+titleInput.addEventListener('input', (e) => {
+
+    if (titleInput.validity.valid) {
+        titleStatus.textContent = "";
+        titleStatus.classList.add('error')
+    } else {
+        titleError()
+    }
+
+})
+
+authorInput.addEventListener('input', (e) => {
+
+    if (authorInput.validity.valid) {
+        authorStatus.textContent = "";
+        authorStatus.classList.add('error')
+    } else {
+        authorError()
+    }
+
+})
+
+pagesInput.addEventListener('input', (e) => {
+
+    if (pagesInput.validity.valid) {
+        pageStatus.textContent = "";
+        pageStatus.classList.add('error')
+    } else {
+        pageError()
+    }
+
+})
+
+checkBox.addEventListener('input', (e) => {
+
+    if (checkBox.validity.valid) {
+        console.log(e)
+        checkBox.setCustomValidity("")
+        // checkStatus.textContent = "";
+        // checkStatus.classList.add('error')
+    } else {
+        checkError()
+    }
+
+})
+
+const titleError = () => {
+    if(titleInput.validity.valueMissing) {
+        titleStatus.textContent = "you need valid input"
+    } else if (titleInput.validity.tooShort) {
+        
+        titleStatus.textContent = `input should be at least ${titleInput.minLength} characters; you entered ${titleInput.value.length}.`;
+    }
+
+    titleStatus.classList.add('error', 'active')
+}
+
+const authorError = () => {
+    if(authorInput.validity.valueMissing) {
+        authorStatus.textContent = "you need valid input"
+    } else if (authorInput.validity.tooShort) {
+
+        authorStatus.textContent = `input should be at least ${authorInput.minLength} characters; you entered ${authorInput.value.length}.`;
+    }
+
+    authorStatus.classList.add('error', 'active')
+}
+
+const pageError = () => {
+    if(pagesInput.validity.valueMissing) {
+        pageStatus.textContent = "you need valid input"
+    } else if (pagesInput.validity.tooShort) {
+
+        pageStatus.textContent = `input should be at least ${pagesInput.minLength} characters; you entered ${pagesInput.value.length}.`;
+    }
+
+    pageStatus.classList.add('error', 'active')
+}
+
+const checkError = () => {
+    if(checkBox.validity.valueMissing) {
+        // checkBox.textContent = "you need valid input"
+        checkBox.setCustomValidity('please')
+    } 
+
+    // checkStatus.classList.add('error', 'active')
+}
+
 // this code get the form open
 addBookBtn.addEventListener('click', () => {
     formModal.classList.add('active')
@@ -40,7 +140,15 @@ Book.prototype.readStatus = function() {
 }
 
 function addBookToLibrary(e) {
+
+    if(!titleInput.validity.valid || !authorInput.validity.valid || !pagesInput.validity.valid || !checkBox.validity.valid) {
+        titleError()
+        authorError()
+        pageError()
+        checkError()
+    }
     e.preventDefault();
+    
 
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;

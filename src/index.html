@@ -26,33 +26,37 @@
  <div class="big-modal">
   <div class="overlay"></div>
   <div class="modal-content">
-    <form id="addBookForm">
+    <form id="addBookForm" novalidate>
       <div class="form-title">input book details
       <span class="close-form-btn">&times;</span>
       </div>
   
       <div class="form-row">
         <label for="title">title</label>
-        <input type="text" name="" id="title" required />
+        <input type="text" name="" id="title" class="validate" required minlength="3"/>
+        <span class="error" aria-live="polite"></span>
       </div>
   
       <div class="form-row">
         <label for="author">author</label>
-        <input type="text" name="" id="author" required />
+        <input type="text" name="" id="author" class="validate" required minlength="5"/>
+        <span class="error" aria-live="polite"></span>
       </div>
   
       <div class="form-row">
         <label for="pages">pages</label>
-        <input type="number" name="" id="pages" required />
+        <input type="number" name="" id="pages" required minlength="1"/>
+        <span class="error" aria-live="polite"></span>
       </div>
   
       <div class="read-status">
         <label for="checkbox"> have you read this book?</label>
         <input
           type="checkbox"
-          name="read-status"
+          name=""
           id="read-status"
           class="check-box"
+          required
         />
       </div>
   
