@@ -27,10 +27,10 @@ titleInput.addEventListener('input', () => {
 
 const titleError = () => {
     if(titleInput.validity.valueMissing) {
-        titleStatus.textContent = "you need valid input"
+        titleStatus.textContent = "You need to enter book's title"
     } else if (titleInput.validity.tooShort) {
         
-        titleStatus.textContent = `input should be at least ${titleInput.minLength} characters; you entered ${titleInput.value.length}.`;
+        titleStatus.textContent = `Input should be at least ${titleInput.minLength} characters; you entered ${titleInput.value.length}.`;
     }
 
     titleStatus.classList.add('error', 'active')
@@ -49,10 +49,10 @@ authorInput.addEventListener('input', () => {
 
 const authorError = () => {
     if(authorInput.validity.valueMissing) {
-        authorStatus.textContent = "you need valid input"
+        authorStatus.textContent = "You need to enter author's name"
     } else if (authorInput.validity.tooShort) {
 
-        authorStatus.textContent = `input should be at least ${authorInput.minLength} characters; you entered ${authorInput.value.length}.`;
+        authorStatus.textContent = `Input should be at least ${authorInput.minLength} characters; you entered ${authorInput.value.length}.`;
     }
 
     authorStatus.classList.add('error', 'active')
@@ -71,10 +71,10 @@ pagesInput.addEventListener('input', () => {
 
 const pageError = () => {
     if(pagesInput.validity.valueMissing) {
-        pageStatus.textContent = "you need valid input"
+        pageStatus.textContent = "You need to enter book's pages"
     } else if (pagesInput.validity.tooShort) {
 
-        pageStatus.textContent = `input should be at least ${pagesInput.minLength} characters; you entered ${pagesInput.value.length}.`;
+        pageStatus.textContent = `Input should be at least ${pagesInput.minLength} characters; you entered ${pagesInput.value.length}.`;
     }
 
     pageStatus.classList.add('error', 'active')
@@ -116,7 +116,6 @@ Book.prototype.readStatus = function() {
 }
 
 function addBookToLibrary(e) {
-
     e.preventDefault()
     
     const title = document.getElementById('title').value;

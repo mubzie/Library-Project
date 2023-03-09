@@ -203,10 +203,11 @@ button.del-btn {
 }
 
 .form-row input:invalid {
-    background-color: #fdd;
+    /* background-color: #fdd; */
 }
 
 input:focus:invalid {
+    background-color: #fdd;
     border-color: #900;
     outline: none;
 }
@@ -214,7 +215,8 @@ input:focus:invalid {
 .error {
     width: 100%;
 
-    font-size: .9rem;
+    font-size: .85rem;
+    text-transform: none;
     font-weight: 500;
     color: #900;
 
