@@ -5,7 +5,7 @@ const addBookForm = document.getElementById('addBookForm');
 const formModal = document.querySelector('.big-modal');
 const display = document.querySelector('.display');
 
-// form validation
+// get form input validation DOM
 const titleInput = document.getElementById('title')
 const authorInput = document.getElementById('author')
 const pagesInput = document.getElementById('pages')
@@ -13,7 +13,7 @@ const titleStatus = document.querySelector('#title + span.error')
 const authorStatus = document.querySelector('#author + span.error')
 const pageStatus = document.querySelector('#pages + span.error')
 
-
+// check title input and validiate using constraint API
 titleInput.addEventListener('input', () => {
 
     if (titleInput.validity.valid) {
@@ -25,6 +25,7 @@ titleInput.addEventListener('input', () => {
 
 })
 
+// show title error function
 const titleError = () => {
     if(titleInput.validity.valueMissing) {
         titleStatus.textContent = "You need to enter book's title"
@@ -36,6 +37,7 @@ const titleError = () => {
     titleStatus.classList.add('error', 'active')
 }
 
+// check author input and validiate using constraint API
 authorInput.addEventListener('input', () => {
 
     if (authorInput.validity.valid) {
@@ -47,6 +49,7 @@ authorInput.addEventListener('input', () => {
 
 })
 
+// show author error function
 const authorError = () => {
     if(authorInput.validity.valueMissing) {
         authorStatus.textContent = "You need to enter author's name"
@@ -58,6 +61,7 @@ const authorError = () => {
     authorStatus.classList.add('error', 'active')
 }
 
+// check page input and validiate using constraint API
 pagesInput.addEventListener('input', () => {
 
     if (pagesInput.validity.valid) {
@@ -69,6 +73,7 @@ pagesInput.addEventListener('input', () => {
 
 })
 
+// show page error function
 const pageError = () => {
     if(pagesInput.validity.valueMissing) {
         pageStatus.textContent = "You need to enter book's pages"
@@ -115,27 +120,33 @@ Book.prototype.readStatus = function() {
     
 }
 
+// the function that get called when adding book to the page
 function addBookToLibrary(e) {
     e.preventDefault()
     
+    // getting all input value
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const pages = document.getElementById('pages').value;
     const readState = document.getElementById('read-status').checked;
 
+    // constructor instantiation
     const book = new Book(title, author, pages, readState);
 
+    // add id to every book that get added to the myLibrary array
     myLibrary.forEach((item, i) => {
         // eslint-disable-next-line no-param-reassign
         item.id = i + 0;
     });
 
+    // check if form validation is invalid and prevent the form to submit
     if(!titleInput.validity.valid || !authorInput.validity.valid || !pagesInput.validity.valid) {
         titleError()
         authorError()
         pageError()
         e.preventDefault();
     } else {
+        // form is valid add the book to myLibrary array and display it on the webpage
         myLibrary.push(book);
         displayBook(book, book.id)
     }
@@ -146,28 +157,35 @@ addBookForm.addEventListener('submit', addBookToLibrary);
 
 function displayBook(book, i) {
 
+    // create book card container
     const cardContainer = document.createElement('div');
     cardContainer.classList.add('card-container');
 
+    // the title display 
     const paraTitle = document.createElement('div');
     paraTitle.classList.add('title');
     paraTitle.textContent = `Title: ${book.title}`
 
+    // the author display 
     const paraAuthor = document.createElement('div');
     paraAuthor.classList.add('author');
     paraAuthor.textContent = `Author: ${book.author}`
 
+    // the page display 
     const paraPages = document.createElement('div');
     paraPages.classList.add('pages')
     paraPages.textContent = `page: ${book.pages}`
 
+    // create button display
     const btnContainer = document.createElement('div');
     btnContainer.classList.add('btn-container');
 
+    // read state button that toggle state
     const readState = document.createElement('button');
     readState.classList.add('change-status', 'display-btn');
     readState.textContent = `${book.readStatus()}`
         
+    // delete button that delete book from the myLibrary array and the DOM
     const deleteBookBtn = document.createElement('button');
     deleteBookBtn.classList.add('del-btn', 'display-btn');
     deleteBookBtn.textContent = 'delete book'
@@ -175,14 +193,19 @@ function displayBook(book, i) {
 
     btnContainer.append(readState, deleteBookBtn);
 
+    // append all display and button to card container
     cardContainer.append(paraTitle, paraAuthor, paraPages, btnContainer);
 
+    // append card container to display DOM
     display.appendChild(cardContainer);
 
+    // close form after the book has been added to the webpage
     closeForm();
 
+    // reset form after the book has been added to the webpage
     addBookForm.reset()
 
+    // read style method that check for checkbox input
     // eslint-disable-next-line func-names
     Book.prototype.readStyle = function() {
         if(this.isRead === true) {
@@ -193,6 +216,7 @@ function displayBook(book, i) {
     }
     book.readStyle();
 
+    // change status
     const changeStatus = document.querySelectorAll('.change-status');
 
     changeStatus.forEach( btn => {
@@ -210,6 +234,7 @@ function displayBook(book, i) {
             })
     })
 
+    // delete books
     const deleteBtns = document.querySelectorAll('.del-btn');
 
     deleteBtns.forEach( btn => {

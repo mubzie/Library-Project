@@ -202,10 +202,6 @@ button.del-btn {
     border: 2px solid #ED0707;
 }
 
-.form-row input:invalid {
-    /* background-color: #fdd; */
-}
-
 input:focus:invalid {
     background-color: #fdd;
     border-color: #900;
