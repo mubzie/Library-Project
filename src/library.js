@@ -80,29 +80,6 @@ const pageError = () => {
     pageStatus.classList.add('error', 'active')
 }
 
-// checkBox.addEventListener('input', (e) => {
-
-//     if (checkBox.validity.valid) {
-//         console.log(e)
-//         checkBox.setCustomValidity("")
-//         // checkStatus.textContent = "";
-//         // checkStatus.classList.add('error')
-//     } else {
-//         checkError()
-//     }
-
-// })
-
-
-// const checkError = () => {
-//     if(checkBox.validity.valueMissing) {
-//         // checkBox.textContent = "you need valid input"
-//         checkBox.setCustomValidity('please')
-//     } 
-
-//     // checkStatus.classList.add('error', 'active')
-// }
-
 // this code get the form open
 addBookBtn.addEventListener('click', () => {
     formModal.classList.add('active')
@@ -145,8 +122,9 @@ function addBookToLibrary(e) {
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const pages = document.getElementById('pages').value;
+    const readState = document.getElementById('read-status').checked;
 
-    const book = new Book(title, author, pages);
+    const book = new Book(title, author, pages, readState);
 
     myLibrary.forEach((item, i) => {
         // eslint-disable-next-line no-param-reassign
