@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 const addBookBtn = document.getElementById('add-book-btn');
 const closeFormBtn = document.querySelector('.close-form-btn');
 const addBookForm = document.getElementById('addBookForm');
@@ -8,56 +9,18 @@ const display = document.querySelector('.display');
 const titleInput = document.getElementById('title')
 const authorInput = document.getElementById('author')
 const pagesInput = document.getElementById('pages')
-const checkBox = document.getElementById('read-status')
 const titleStatus = document.querySelector('#title + span.error')
 const authorStatus = document.querySelector('#author + span.error')
 const pageStatus = document.querySelector('#pages + span.error')
-// const checkStatus = document.querySelector('#read-status + span.error')
 
 
-
-titleInput.addEventListener('input', (e) => {
+titleInput.addEventListener('input', () => {
 
     if (titleInput.validity.valid) {
         titleStatus.textContent = "";
         titleStatus.classList.add('error')
     } else {
         titleError()
-    }
-
-})
-
-authorInput.addEventListener('input', (e) => {
-
-    if (authorInput.validity.valid) {
-        authorStatus.textContent = "";
-        authorStatus.classList.add('error')
-    } else {
-        authorError()
-    }
-
-})
-
-pagesInput.addEventListener('input', (e) => {
-
-    if (pagesInput.validity.valid) {
-        pageStatus.textContent = "";
-        pageStatus.classList.add('error')
-    } else {
-        pageError()
-    }
-
-})
-
-checkBox.addEventListener('input', (e) => {
-
-    if (checkBox.validity.valid) {
-        console.log(e)
-        checkBox.setCustomValidity("")
-        // checkStatus.textContent = "";
-        // checkStatus.classList.add('error')
-    } else {
-        checkError()
     }
 
 })
@@ -73,6 +36,17 @@ const titleError = () => {
     titleStatus.classList.add('error', 'active')
 }
 
+authorInput.addEventListener('input', () => {
+
+    if (authorInput.validity.valid) {
+        authorStatus.textContent = "";
+        authorStatus.classList.add('error')
+    } else {
+        authorError()
+    }
+
+})
+
 const authorError = () => {
     if(authorInput.validity.valueMissing) {
         authorStatus.textContent = "you need valid input"
@@ -83,6 +57,17 @@ const authorError = () => {
 
     authorStatus.classList.add('error', 'active')
 }
+
+pagesInput.addEventListener('input', () => {
+
+    if (pagesInput.validity.valid) {
+        pageStatus.textContent = "";
+        pageStatus.classList.add('error')
+    } else {
+        pageError()
+    }
+
+})
 
 const pageError = () => {
     if(pagesInput.validity.valueMissing) {
@@ -95,14 +80,28 @@ const pageError = () => {
     pageStatus.classList.add('error', 'active')
 }
 
-const checkError = () => {
-    if(checkBox.validity.valueMissing) {
-        // checkBox.textContent = "you need valid input"
-        checkBox.setCustomValidity('please')
-    } 
+// checkBox.addEventListener('input', (e) => {
 
-    // checkStatus.classList.add('error', 'active')
-}
+//     if (checkBox.validity.valid) {
+//         console.log(e)
+//         checkBox.setCustomValidity("")
+//         // checkStatus.textContent = "";
+//         // checkStatus.classList.add('error')
+//     } else {
+//         checkError()
+//     }
+
+// })
+
+
+// const checkError = () => {
+//     if(checkBox.validity.valueMissing) {
+//         // checkBox.textContent = "you need valid input"
+//         checkBox.setCustomValidity('please')
+//     } 
+
+//     // checkStatus.classList.add('error', 'active')
+// }
 
 // this code get the form open
 addBookBtn.addEventListener('click', () => {
@@ -141,33 +140,28 @@ Book.prototype.readStatus = function() {
 
 function addBookToLibrary(e) {
 
-    if(!titleInput.validity.valid || !authorInput.validity.valid || !pagesInput.validity.valid || !checkBox.validity.valid) {
-        titleError()
-        authorError()
-        pageError()
-        checkError()
-    }
-    e.preventDefault();
+    e.preventDefault()
     
-
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const pages = document.getElementById('pages').value;
-    const readStatus = document.getElementById('read-status').checked;
 
-    const book = new Book(title, author, pages, readStatus);
-
-    myLibrary.push(book);
+    const book = new Book(title, author, pages);
 
     myLibrary.forEach((item, i) => {
         // eslint-disable-next-line no-param-reassign
         item.id = i + 0;
     });
 
-    // eslint-disable-next-line no-use-before-define
-    displayBook(book, book.id)
-
-    addBookForm.reset()
+    if(!titleInput.validity.valid || !authorInput.validity.valid || !pagesInput.validity.valid) {
+        titleError()
+        authorError()
+        pageError()
+        e.preventDefault();
+    } else {
+        myLibrary.push(book);
+        displayBook(book, book.id)
+    }
 
 }
 
@@ -209,6 +203,8 @@ function displayBook(book, i) {
     display.appendChild(cardContainer);
 
     closeForm();
+
+    addBookForm.reset()
 
     // eslint-disable-next-line func-names
     Book.prototype.readStyle = function() {
