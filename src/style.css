@@ -1,0 +1,243 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  font-family: "Inter", Helvetica, sans-serif;
+  font-size: 16px;
+  background-color: #e7e7e7;
+  color: #191919;
+}
+
+header {
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 60px;
+  background-color: #fff;
+  color: #191919;
+  border-bottom: 2px solid #d5d7db;
+  text-transform: uppercase;
+}
+
+/* header.header {
+    position: fixed;
+    left: 0;
+    right: 0;
+} */
+
+button.add-book {
+  padding: 12px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #191919;
+  color: #fff;
+}
+
+div.form-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+main {
+  height: 100vh;
+}
+
+/* style form */
+form {
+  width: 300px;
+  height: auto;
+  background-color: #fff;
+  padding: 20px;
+  font-size: 1rem;
+  text-transform: capitalize;
+  border-radius: 8px;
+}
+
+/* close button styling */
+.close-form-btn {
+  color: #191919;
+  float: right;
+  font-size: 2rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* flex form div to make label stay on top of input */
+form div {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  gap: 4px;
+}
+
+/* flex row checkbox and label to stay side by side */
+div.read-status {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* resize checkbox */
+.check-box {
+  height: 25px;
+  width: 25px;
+  background-color: #191919;
+  cursor: pointer;
+}
+
+/* change default form input style */
+.form-row input[type="text"],
+.form-row input[type="number"] {
+  padding: 7px;
+  border: 1px solid #c4c4c4;
+  border-radius: 4px;
+}
+
+/* style form button */
+button.submit {
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  background-color: #191919;
+  color: #fff;
+  cursor: pointer;
+}
+
+.big-modal .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+  display: none;
+}
+
+.big-modal .modal-content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  z-index: 2;
+}
+
+.big-modal.active .overlay {
+  display: block;
+}
+
+.big-modal.active .modal-content {
+  transition: all 300ms ease-in-out;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+div.display {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 32px;
+  padding: 40px 60px;
+  font-size: 1.5rem;
+}
+
+div.card-container {
+  height: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 2px solid #d5d7db;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  text-transform: capitalize;
+  background-color: #fff;
+}
+
+div.btn-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+button.display-btn {
+  padding: 8px;
+  font-size: 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  text-transform: capitalize;
+  border: none;
+}
+
+button.read {
+  background-color: #191919;
+  color: #fff;
+  border: 2px solid #191919;
+}
+
+button.not-read {
+  background-color: #fff;
+  color: #191919;
+  border: 2px solid #191919;
+}
+
+button.del-btn {
+  background-color: #ed0707;
+  color: #fff;
+  border: 2px solid #ed0707;
+}
+
+input:focus:invalid {
+  background-color: #fdd;
+  border-color: #900;
+  outline: none;
+}
+
+.error {
+  width: 100%;
+
+  font-size: 0.85rem;
+  text-transform: none;
+  font-weight: 500;
+  color: #900;
+
+  box-sizing: border-box;
+}
+
+.error.active {
+  padding: 0.3em;
+}
+
+/* Media query */
+
+@media (max-width: 600px) {
+  header {
+    font-size: 1rem;
+    padding: 28px 16px;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  button.add-book {
+    font-size: 1rem;
+  }
+
+  div.display {
+    padding: 40px 16px;
+  }
+}
