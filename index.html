@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../src/style.css" />
+    <script src="main.js" defer></script>
+    <title>Library App</title>
+  </head>
+
+  <body>
+    <header class="header">
+      <h1>My Library</h1>
+      <div class="add-book-btn">
+        <button class="add-book" id="add-book-btn">+ add new book</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="display"></div>
+    </main>
+
+    <div class="big-modal">
+      <div class="overlay"></div>
+      <div class="modal-content">
+        <form id="addBookForm" novalidate>
+          <div class="form-title">
+            input book details
+            <span class="close-form-btn">&times;</span>
+          </div>
+
+          <div class="form-row">
+            <label for="title">title</label>
+            <input
+              type="text"
+              name=""
+              id="title"
+              class="validate"
+              required
+              minlength="3"
+            />
+            <span class="error" aria-live="polite"></span>
+          </div>
+
+          <div class="form-row">
+            <label for="author">author</label>
+            <input
+              type="text"
+              name=""
+              id="author"
+              class="validate"
+              required
+              minlength="5"
+            />
+            <span class="error" aria-live="polite"></span>
+          </div>
+
+          <div class="form-row">
+            <label for="pages">pages</label>
+            <input type="number" name="" id="pages" required minlength="1" />
+            <span class="error" aria-live="polite"></span>
+          </div>
+
+          <div class="read-status">
+            <label for="checkbox"> have you read this book?</label>
+            <input type="checkbox" name="" id="read-status" class="check-box" />
+          </div>
+
+          <div class="form-button">
+            <button class="submit">Add book</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
