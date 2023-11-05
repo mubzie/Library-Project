@@ -1,3 +1,5 @@
+import "./style.css";
+
 /* eslint-disable no-use-before-define */
 const addBookBtn = document.getElementById("add-book-btn");
 const closeFormBtn = document.querySelector(".close-form-btn");
