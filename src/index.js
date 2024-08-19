@@ -1,4 +1,7 @@
 import "./style.css";
+import trash from "./asset/trash.svg";
+import user from "./asset/user-alt-1.svg";
+import bookIcon from "./asset/book-open.svg";
 
 /* eslint-disable no-use-before-define */
 const addBookBtn = document.getElementById("add-book-btn");
@@ -107,9 +110,9 @@ class Book {
 // eslint-disable-next-line func-names
 Book.prototype.readStatus = function () {
   if (this.isRead === true) {
-    return "read";
+    return "Mark as Unread";
   }
-  return "not read";
+  return "Mark as Read";
 };
 
 // the function that get called when adding book to the page
@@ -157,18 +160,26 @@ function displayBook(book, i) {
 
   // the title display
   const paraTitle = document.createElement("div");
-  paraTitle.classList.add("title");
-  paraTitle.textContent = `Title: ${book.title}`;
+  paraTitle.classList.add("card-title");
+  paraTitle.textContent = `${book.title}`;
 
   // the author display
-  const paraAuthor = document.createElement("div");
-  paraAuthor.classList.add("author");
-  paraAuthor.textContent = `Author: ${book.author}`;
+  const authorContainer = document.createElement("div");
+  authorContainer.classList.add("author-container");
+
+  const authorImg = new Image();
+  authorImg.src = user;
+  const authorName = `${book.author}`;
+  authorContainer.append(authorImg, authorName);
 
   // the page display
-  const paraPages = document.createElement("div");
-  paraPages.classList.add("pages");
-  paraPages.textContent = `page: ${book.pages}`;
+  const pageContainer = document.createElement("div");
+  pageContainer.classList.add("page-container");
+
+  const pageImg = new Image();
+  pageImg.src = bookIcon;
+  const pageNumber = `${book.pages}`;
+  pageContainer.append(pageImg, pageNumber);
 
   // create button display
   const btnContainer = document.createElement("div");
@@ -182,13 +193,19 @@ function displayBook(book, i) {
   // delete button that delete book from the myLibrary array and the DOM
   const deleteBookBtn = document.createElement("button");
   deleteBookBtn.classList.add("del-btn", "display-btn");
-  deleteBookBtn.textContent = "delete book";
   deleteBookBtn.setAttribute("data-id", `${i}`);
+
+  const deleteIcon = new Image();
+  deleteIcon.src = trash;
+  deleteIcon.classList.add("del-icon");
+  const buttonText = document.createElement("span");
+  buttonText.textContent = "delete book";
+  deleteBookBtn.append(deleteIcon, buttonText);
 
   btnContainer.append(readState, deleteBookBtn);
 
   // append all display and button to card container
-  cardContainer.append(paraTitle, paraAuthor, paraPages, btnContainer);
+  cardContainer.append(paraTitle, authorContainer, pageContainer, btnContainer);
 
   // append card container to display DOM
   display.appendChild(cardContainer);
@@ -213,15 +230,15 @@ function displayBook(book, i) {
   // change status
   const changeStatus = document.querySelectorAll(".change-status");
 
-  changeStatus.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
+  changeStatus.forEach((btns) => {
+    btns.addEventListener("click", (e) => {
       e.stopImmediatePropagation();
-      if (readState.textContent === "read") {
-        readState.textContent = "not read";
+      if (readState.textContent === "Mark as Unread") {
+        readState.textContent = "Mark as Read";
         readState.classList.add("not-read");
         readState.classList.remove("read");
-      } else if (readState.textContent === "not read") {
-        readState.textContent = "read";
+      } else if (readState.textContent === "Mark as Read") {
+        readState.textContent = "Mark as Unread";
         readState.classList.add("read");
         readState.classList.remove("not-read");
       }
