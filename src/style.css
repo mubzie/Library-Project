@@ -19,7 +19,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24px 200px;
+  padding: 24px 160px;
   background-color: #fff;
   color: #212121;
   border-bottom: 2px solid #ecebeb;
@@ -186,8 +186,8 @@ button.submit {
 
 .big-modal .modal-content {
   position: absolute;
-  left: 50%;
   top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%) scale(0);
   z-index: 2;
 }
@@ -197,23 +197,22 @@ button.submit {
 }
 
 .big-modal.active .modal-content {
-  transition: all 300ms ease-in-out;
+  /* transition: all 300ms ease-in-out; */
   transform: translate(-50%, -50%) scale(1);
+  transition: transform 250ms cubic-bezier(0, 0, 0, 1.5);
 }
 
 div.display {
   display: grid;
-  /* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 313px));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   justify-content: start;
   gap: 32px;
-  padding: 40px 60px;
+  padding: 40px 160px;
   font-size: 1.5rem;
 }
 
 div.card-container {
   height: auto;
-  width: 313px;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -221,8 +220,25 @@ div.card-container {
   border: 1px solid #dbdbdd;
   border-radius: 8px;
   font-size: 1.2rem;
-  /* text-transform: capitalize; */
   background-color: #fff;
+
+  /* opacity: 0; */
+  scale: 0;
+  /* transform: translateY(20px); */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+div.card-container.show {
+  scale: 1;
+  /* opacity: 1; */
+  transform: translateY(0);
+}
+
+div.card-container.hide {
+  /* opacity: 0; */
+  scale: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  /* transform: translateY(20px); */
 }
 
 .card-title {
@@ -261,7 +277,6 @@ button.display-btn {
   font-size: 1.2rem;
   border-radius: 6px;
   cursor: pointer;
-  /* text-transform: capitalize; */
   border: none;
 }
 
@@ -269,14 +284,12 @@ button.read {
   font-weight: 500;
   background-color: #525252;
   color: #fff;
-  /* border: 2px solid #191919; */
 }
 
 button.not-read {
   font-weight: 500;
   background-color: #f4f4f5;
   color: #212121;
-  /* border: 2px solid #191919; */
 }
 
 button.del-btn {
@@ -297,14 +310,7 @@ button.del-btn {
 }
 
 input:focus:invalid {
-  /* background-color: rgb(250, 238, 238); */
-  /* border-color: #900; */
   border: 1px solid #ed0707;
-  outline: none;
-}
-
-input:focus:valid {
-  border: 1px solid #07a52e;
   outline: none;
 }
 
@@ -331,17 +337,17 @@ input:focus:valid {
   }
 
   div.display {
-    padding: 40px 16px;
+    padding: 40px 120px;
   }
 }
 
 @media (max-width: 900px) {
   header {
-    padding: 24px 120px;
+    padding: 24px 96px;
   }
 
   div.display {
-    padding: 40px 16px;
+    padding: 40px 96px;
   }
 }
 

@@ -210,6 +210,10 @@ function displayBook(book, i) {
   // append card container to display DOM
   display.appendChild(cardContainer);
 
+  setTimeout(() => {
+    cardContainer.classList.add("show");
+  }, 10);
+
   // close form after the book has been added to the webpage
   closeForm();
 
@@ -246,16 +250,29 @@ function displayBook(book, i) {
   });
 
   // delete books
-  const deleteBtns = document.querySelectorAll(".del-btn");
+  const deleteBtns = document.querySelector(".display");
 
-  deleteBtns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.stopImmediatePropagation();
-      const index = btn.dataset.id;
+  deleteBtns.addEventListener("click", (e) => {
+    const deleteBtn = e.target.closest(".del-btn");
 
-      myLibrary.splice(index, 1);
+    if (deleteBtn) {
+      const card = deleteBtn.closest(".card-container");
 
-      btn.parentElement.parentElement.remove();
-    });
+      // const index = deleteBtn.dataset.id;
+      const index = e.target.dataset;
+      console.log(index);
+
+      card.classList.add("hide");
+
+      card.addEventListener(
+        "transitionend",
+        () => {
+          myLibrary.splice(index, 1);
+
+          card.remove();
+        },
+        { once: true }
+      );
+    }
   });
 }
