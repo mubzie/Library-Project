@@ -98,11 +98,12 @@ const myLibrary = [];
 
 // this is the class declaration that get called using the "new" keyword
 class Book {
-  constructor(title, author, pages, isRead) {
+  constructor(title, author, pages, isRead, id) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.isRead = isRead;
+    this.id = id;
   }
 }
 
@@ -126,13 +127,7 @@ function addBookToLibrary(e) {
   const readState = document.getElementById("read-status").checked;
 
   // constructor instantiation
-  const book = new Book(title, author, pages, readState);
-
-  // add id to every book that get added to the myLibrary array
-  myLibrary.forEach((item, i) => {
-    // eslint-disable-next-line no-param-reassign
-    item.id = i + 0;
-  });
+  const book = new Book(title, author, pages, readState, myLibrary.length);
 
   // check if form validation is invalid and prevent the form to submit
   if (
@@ -218,7 +213,7 @@ function displayBook(book, i) {
   closeForm();
 
   // reset form after the book has been added to the webpage
-  addBookForm.reset();
+  // addBookForm.reset();
 
   // read style method that check for checkbox input
   // eslint-disable-next-line func-names
@@ -253,21 +248,23 @@ function displayBook(book, i) {
   const deleteBtns = document.querySelector(".display");
 
   deleteBtns.addEventListener("click", (e) => {
+    e.stopImmediatePropagation();
     const deleteBtn = e.target.closest(".del-btn");
+    console.log(deleteBtn);
 
     if (deleteBtn) {
       const card = deleteBtn.closest(".card-container");
 
-      // const index = deleteBtn.dataset.id;
-      const index = e.target.dataset;
-      console.log(index);
+      const index = deleteBtn.dataset.id;
 
       card.classList.add("hide");
 
       card.addEventListener(
         "transitionend",
         () => {
-          myLibrary.splice(index, 1);
+          if (index !== -1) {
+            myLibrary.splice(index, 1);
+          }
 
           card.remove();
         },
