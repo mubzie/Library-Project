@@ -1,4 +1,7 @@
 import "./style.css";
+import trash from "./asset/trash.svg";
+import user from "./asset/user-alt-1.svg";
+import bookIcon from "./asset/book-open.svg";
 
 /* eslint-disable no-use-before-define */
 const addBookBtn = document.getElementById("add-book-btn");
@@ -95,11 +98,12 @@ const myLibrary = [];
 
 // this is the class declaration that get called using the "new" keyword
 class Book {
-  constructor(title, author, pages, isRead) {
+  constructor(title, author, pages, isRead, id) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.isRead = isRead;
+    this.id = id;
   }
 }
 
@@ -107,9 +111,9 @@ class Book {
 // eslint-disable-next-line func-names
 Book.prototype.readStatus = function () {
   if (this.isRead === true) {
-    return "read";
+    return "Mark as Unread";
   }
-  return "not read";
+  return "Mark as Read";
 };
 
 // the function that get called when adding book to the page
@@ -123,13 +127,7 @@ function addBookToLibrary(e) {
   const readState = document.getElementById("read-status").checked;
 
   // constructor instantiation
-  const book = new Book(title, author, pages, readState);
-
-  // add id to every book that get added to the myLibrary array
-  myLibrary.forEach((item, i) => {
-    // eslint-disable-next-line no-param-reassign
-    item.id = i + 0;
-  });
+  const book = new Book(title, author, pages, readState, myLibrary.length);
 
   // check if form validation is invalid and prevent the form to submit
   if (
@@ -157,18 +155,26 @@ function displayBook(book, i) {
 
   // the title display
   const paraTitle = document.createElement("div");
-  paraTitle.classList.add("title");
-  paraTitle.textContent = `Title: ${book.title}`;
+  paraTitle.classList.add("card-title");
+  paraTitle.textContent = `${book.title}`;
 
   // the author display
-  const paraAuthor = document.createElement("div");
-  paraAuthor.classList.add("author");
-  paraAuthor.textContent = `Author: ${book.author}`;
+  const authorContainer = document.createElement("div");
+  authorContainer.classList.add("author-container");
+
+  const authorImg = new Image();
+  authorImg.src = user;
+  const authorName = `${book.author}`;
+  authorContainer.append(authorImg, authorName);
 
   // the page display
-  const paraPages = document.createElement("div");
-  paraPages.classList.add("pages");
-  paraPages.textContent = `page: ${book.pages}`;
+  const pageContainer = document.createElement("div");
+  pageContainer.classList.add("page-container");
+
+  const pageImg = new Image();
+  pageImg.src = bookIcon;
+  const pageNumber = `${book.pages}`;
+  pageContainer.append(pageImg, pageNumber);
 
   // create button display
   const btnContainer = document.createElement("div");
@@ -182,16 +188,26 @@ function displayBook(book, i) {
   // delete button that delete book from the myLibrary array and the DOM
   const deleteBookBtn = document.createElement("button");
   deleteBookBtn.classList.add("del-btn", "display-btn");
-  deleteBookBtn.textContent = "delete book";
   deleteBookBtn.setAttribute("data-id", `${i}`);
+
+  const deleteIcon = new Image();
+  deleteIcon.src = trash;
+  deleteIcon.classList.add("del-icon");
+  const buttonText = document.createElement("span");
+  buttonText.textContent = "delete book";
+  deleteBookBtn.append(deleteIcon, buttonText);
 
   btnContainer.append(readState, deleteBookBtn);
 
   // append all display and button to card container
-  cardContainer.append(paraTitle, paraAuthor, paraPages, btnContainer);
+  cardContainer.append(paraTitle, authorContainer, pageContainer, btnContainer);
 
   // append card container to display DOM
   display.appendChild(cardContainer);
+
+  setTimeout(() => {
+    cardContainer.classList.add("show");
+  }, 10);
 
   // close form after the book has been added to the webpage
   closeForm();
@@ -213,15 +229,15 @@ function displayBook(book, i) {
   // change status
   const changeStatus = document.querySelectorAll(".change-status");
 
-  changeStatus.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
+  changeStatus.forEach((btns) => {
+    btns.addEventListener("click", (e) => {
       e.stopImmediatePropagation();
-      if (readState.textContent === "read") {
-        readState.textContent = "not read";
+      if (readState.textContent === "Mark as Unread") {
+        readState.textContent = "Mark as Read";
         readState.classList.add("not-read");
         readState.classList.remove("read");
-      } else if (readState.textContent === "not read") {
-        readState.textContent = "read";
+      } else if (readState.textContent === "Mark as Read") {
+        readState.textContent = "Mark as Unread";
         readState.classList.add("read");
         readState.classList.remove("not-read");
       }
@@ -229,16 +245,31 @@ function displayBook(book, i) {
   });
 
   // delete books
-  const deleteBtns = document.querySelectorAll(".del-btn");
+  const deleteBtns = document.querySelector(".display");
 
-  deleteBtns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.stopImmediatePropagation();
-      const index = btn.dataset.id;
+  deleteBtns.addEventListener("click", (e) => {
+    e.stopImmediatePropagation();
+    const deleteBtn = e.target.closest(".del-btn");
+    console.log(deleteBtn);
 
-      myLibrary.splice(index, 1);
+    if (deleteBtn) {
+      const card = deleteBtn.closest(".card-container");
 
-      btn.parentElement.parentElement.remove();
-    });
+      const index = deleteBtn.dataset.id;
+
+      card.classList.add("hide");
+
+      card.addEventListener(
+        "transitionend",
+        () => {
+          if (index !== -1) {
+            myLibrary.splice(index, 1);
+          }
+
+          card.remove();
+        },
+        { once: true }
+      );
+    }
   });
 }
