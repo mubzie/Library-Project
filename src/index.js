@@ -213,7 +213,7 @@ function displayBook(book, i) {
   closeForm();
 
   // reset form after the book has been added to the webpage
-  // addBookForm.reset();
+  addBookForm.reset();
 
   // read style method that check for checkbox input
   // eslint-disable-next-line func-names
